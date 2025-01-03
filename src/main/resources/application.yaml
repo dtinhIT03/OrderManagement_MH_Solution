@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/qlbh_mhsolution
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+logging:
+  level:
+    root: warn
+server:
+  port: 8088
+  servlet:
+    context-path: /mh_solution
+
+jwt:
+  singerKey: 1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij
+  valid-duration: 3000
+  refreshable-duration: 3600
