@@ -1,9 +1,10 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dto.request.OrderRequest;
-import com.example.demo.dto.response.OrderProductResponse;
-import com.example.demo.dto.response.OrderResponse;
-import com.example.demo.dto.response.PageResponse;
+import com.example.demo.data_jooq.request.CriteriaRequest;
+import com.example.demo.data_jooq.request.OrderRequest;
+import com.example.demo.data_jooq.response.OrderProductResponse;
+import com.example.demo.data_jooq.response.OrderResponse;
+import com.example.demo.data_jooq.response.PageResponse;
 import com.example.demo.entity.Order;
 import com.example.demo.entity.OrderProduct;
 import com.example.demo.entity.User;
@@ -18,7 +19,6 @@ import com.example.demo.utils.AppConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -228,5 +228,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public PageResponse<List<OrderResponse>> getOrdersAdvancedByCrietia(int offset,int pageSize,String... params) {
         return searchRepository.advanceSearch(offset,pageSize,params);
+    }
+
+    @Override
+    public PageResponse<List<OrderResponse>> getOrdersAdvancedByCrietia_1(int offset,int pageSize, CriteriaRequest params) {
+        System.out.println(params);
+        return searchRepository.advanceSearch_body(offset,pageSize,params);
+
     }
 }

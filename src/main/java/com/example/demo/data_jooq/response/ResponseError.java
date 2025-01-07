@@ -1,4 +1,4 @@
-package com.example.demo.dto.response;
+package com.example.demo.data_jooq.response;
 
 public class ResponseError extends ResponseData{
 

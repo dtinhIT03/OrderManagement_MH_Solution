@@ -1,7 +1,7 @@
 package com.example.demo.config;
 
-import com.example.demo.dto.request.ValidToken;
-import com.example.demo.dto.response.ValidTokenResponse;
+import com.example.demo.data_jooq.request.ValidToken;
+import com.example.demo.data_jooq.response.ValidTokenResponse;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.MACVerifier;
@@ -45,4 +45,8 @@ public class AuthenticationComponent {
 
         return ValidTokenResponse.builder().valid(isValid).build();
     }
+
+//    public AuthenticationResponse authenticate(AuthenticationRequest request){
+//
+//    }
 }

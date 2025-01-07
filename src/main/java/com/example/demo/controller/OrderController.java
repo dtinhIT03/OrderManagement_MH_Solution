@@ -1,10 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.request.OrderRequest;
-import com.example.demo.dto.response.OrderResponse;
-import com.example.demo.dto.response.PageResponse;
-import com.example.demo.dto.response.ResponseData;
-import com.example.demo.dto.response.ResponseError;
+import com.example.demo.data_jooq.request.CriteriaRequest;
+import com.example.demo.data_jooq.request.OrderRequest;
+import com.example.demo.data_jooq.response.OrderResponse;
+import com.example.demo.data_jooq.response.PageResponse;
+import com.example.demo.data_jooq.response.ResponseData;
+import com.example.demo.data_jooq.response.ResponseError;
 import com.example.demo.enums.StatusOrder;
 import com.example.demo.service.OrderService;
 import com.example.demo.utils.AppConstants;
@@ -107,6 +108,15 @@ public class OrderController {
                                                                                       @RequestParam(name = "page_size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) @Min(1) int pageSize,
                                                                                       @RequestParam String... params) {
         return new ResponseData<>(HttpStatus.OK.value(), "get list order advanced successfully!",orderService.getOrdersAdvancedByCrietia(pageNo,pageSize,params));
+
+    }
+
+    @GetMapping("/advanced-search-by-criteria-1")
+    public ResponseData<PageResponse<List<OrderResponse>>> getOrdersAdvancedByCriteria_1(@RequestParam(name = "page_no", required = false, defaultValue = AppConstants.DEFAULT_PAGE_NUMBER)  @Min(0) int pageNo,
+                                                                                         @RequestParam(name = "page_size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) @Min(1) int pageSize,
+                                                                                         @RequestBody CriteriaRequest params){
+
+        return new ResponseData<>(HttpStatus.OK.value(), "get list order advanced successfully!",orderService.getOrdersAdvancedByCrietia_1(pageNo,pageSize, params));
 
     }
 }

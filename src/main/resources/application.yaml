@@ -1,17 +1,35 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/qlbh_mhsolution
-  jpa:
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.MySQLDialect
-    show-sql: true
+    #Cấu hình MYSQL
+    mysql:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+      url: jdbc:mysql://localhost:3306/qlbh_mhsolution
+    #Cấu hình Postgres
+    postgres:
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: postgres
+      url: jdbc:postgres://localhost:5432/qlbh__mhsolution
+
+
+    jpa:
+      mysql:
+        hibernate:
+          ddl-auto: update
+          dialect: org.hibernate.dialect.MySQLDialect
+        show-sql: true
+      postgresql:
+        hibernate:
+          ddl-auto: update
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+
+
 logging:
   level:
-    root: warn
+    root: debug
 server:
   port: 8088
   servlet:

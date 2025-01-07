@@ -1,6 +1,5 @@
-package com.example.demo.dto.response;
+package com.example.demo.data_jooq.response;
 
-import com.example.demo.entity.OrderProduct;
 import com.example.demo.enums.StatusOrder;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

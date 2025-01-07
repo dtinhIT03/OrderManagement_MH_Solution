@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.dto.request.ValidToken;
+import com.example.demo.data_jooq.request.ValidToken;
 import com.nimbusds.jose.JOSEException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
-import com.example.demo.dto.response.PageResponse;
+import com.example.demo.data_jooq.request.CriteriaRequest;
+import com.example.demo.data_jooq.response.PageResponse;
 import com.example.demo.entity.Order;
 import com.example.demo.repository.criteria.OrderSearchCriteria;
 import com.example.demo.repository.criteria.SearchCriteria;
@@ -99,5 +100,64 @@ public class SearchRepository {
         query.select(criteriaBuilder.count(root));
         query.where(predicate);
         return entityManager.createQuery(query).getSingleResult();
+    }
+
+//    public PageResponse advanceSearch_Body(int offset, int pageSize, OrderRequest params){
+//        //firstName:T, lastName:T => phải viết 1 biểu thức để mình field vào entity
+//
+//        //1. lay ra danh sach order
+//        List<SearchCriteria> searchCriteria = new ArrayList<>();
+//        if(params != null){
+//            //duyệt mảng
+//            for(String s : params){
+//                //name->operation->value
+//                Pattern pattern = Pattern.compile("(\\w+?)(:|>|<)(.*)");
+//                Matcher matcher = pattern.matcher(s);
+//                if(matcher.find()){
+//                    searchCriteria.add(new SearchCriteria(matcher.group(1), matcher.group(2),matcher.group(3) ));
+//                }
+//            }
+//
+//        }
+//        List<Order> orders = getOrders(offset,pageSize,searchCriteria);
+//        //2. lay ra so luong ban ghi
+//        Long totalElements = getTotalElements(searchCriteria);
+//
+//        Page<Order> page = new PageImpl<>(orders, PageRequest.of(offset,pageSize),totalElements);
+//
+//        return PageResponse.builder()
+//                .data(orders)
+//                .pageSize(pageSize)
+//                .pageNo(offset)
+//                .totalElement(totalElements)
+//                .totalPages(page.getTotalPages())
+//                .pageNo(offset)
+//                .build();
+//    }
+
+    public PageResponse advanceSearch_body(int offset, int pageSize, CriteriaRequest params) {
+        // 1. Lấy ra danh sách các tiêu chí tìm kiếm từ OrderRequest
+        List<SearchCriteria> searchCriteria = new ArrayList<>();
+        if (params != null && params.getCriteria() != null) {
+            searchCriteria.addAll(params.getCriteria());
+        }
+
+        // 2. Gọi hàm lấy danh sách Orders dựa trên tiêu chí tìm kiếm
+        List<Order> orders = getOrders(offset, pageSize, searchCriteria);
+
+        // 3. Lấy tổng số lượng bản ghi khớp với tiêu chí
+        Long totalElements = getTotalElements(searchCriteria);
+
+        // 4. Tạo đối tượng Page từ kết quả
+        Page<Order> page = new PageImpl<>(orders, PageRequest.of(offset, pageSize), totalElements);
+
+        // 5. Trả về kết quả dạng PageResponse
+        return PageResponse.builder()
+                .data(orders)
+                .pageSize(pageSize)
+                .pageNo(offset)
+                .totalElement(totalElements)
+                .totalPages(page.getTotalPages())
+                .build();
     }
 }

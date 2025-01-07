@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.request.OrderRequest;
-import com.example.demo.dto.response.OrderResponse;
-import com.example.demo.dto.response.PageResponse;
+import com.example.demo.data_jooq.request.CriteriaRequest;
+import com.example.demo.data_jooq.request.OrderRequest;
+import com.example.demo.data_jooq.response.OrderResponse;
+import com.example.demo.data_jooq.response.PageResponse;
 import com.example.demo.enums.StatusOrder;
-import org.hibernate.query.Page;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,4 +42,6 @@ public interface OrderService {
     PageResponse<List<OrderResponse>> getOrdersAdvanced(Map<String,Object> params);
 
     PageResponse<List<OrderResponse>> getOrdersAdvancedByCrietia(int offset,int pageSize, String... params);
+
+    PageResponse<List<OrderResponse>> getOrdersAdvancedByCrietia_1(int offset, int pageSize, CriteriaRequest params);
 }

@@ -1,4 +1,4 @@
-package com.example.demo.dto.response;
+package com.example.demo.data_jooq.response;
 
 import lombok.Builder;
 import lombok.Getter;
